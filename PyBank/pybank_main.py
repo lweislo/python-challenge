@@ -36,17 +36,16 @@ with open(filepath, newline='') as csvfile:
             change_month.append(row[0])
         #now set the current budget to last_value to compare in the next iteration
         last_value = budget
-    #Calculate the average budget, max and min changes and grab the month
+
+#Calculate the average budget, max and min changes and grab the month
     #using the same index as net_change on the change_month list
-    avg_change = round(sum(net_change)/(month_count - 1), 2)
-    max_profit = max(net_change)
-    max_position = change_month[net_change.index(max(net_change))]
-    min_profit = min(net_change)
-    min_position = change_month[net_change.index(min(net_change))]
-    
-   #Prepare the file for output 
-    #output_path = os.path.join("..", "output", "budget.txt")
-    with open('budget.txt', 'w') as f:
+avg_change = round(sum(net_change)/(month_count - 1), 2)
+max_profit = max(net_change)
+max_position = change_month[net_change.index(max(net_change))]
+min_profit = min(net_change)
+min_position = change_month[net_change.index(min(net_change))]
+
+with open('budget.txt', 'w') as f:
     
         output = (f"""Financial Analysis \n--------------------\nTotal Months: {month_count} \nTotal: ${net_total} \nAverage Change: $ {avg_change} \nGreatest Increase in Profits: {max_position} (${max_profit}) \nGreatest Decrease in Profits: {min_position} (${min_profit}) \n """)
 
@@ -54,3 +53,5 @@ with open(filepath, newline='') as csvfile:
         f.write(output)
     
         f.close()
+
+
